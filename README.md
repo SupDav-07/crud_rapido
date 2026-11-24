@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laboratorio #2: CRUD rápido en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+📅 Fecha: [23/11/2026]
 
-## About Laravel
+## 📄 Contenido del Repositorio
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este repositorio contiene el proyecto `crud_rapido`, desarrollado con el framework Laravel, correspondiente al **Laboratorio #2: Acercamiento a un CRUD rápido en Laravel** del curso de Desarrollo Web. Incluye la creación de una tabla de **productos** mediante migraciones, y la generación automática de un **CRUD completo** (crear, leer, actualizar y eliminar) con el paquete `ibex/crud-generator`, con vistas en Bootstrap.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tecnologías Utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Lenguaje:** PHP 8.3.28
+- **Framework:** Laravel 12.x
+- **Generador de CRUD:** `ibex/crud-generator` (instalado como dependencia de desarrollo)
+- **Front-end:** Bootstrap 5 mediante `laravel/ui`, plantillas Blade
+- **Compilador de assets:** Vite (Node.js y npm)
+- **Gestor de dependencias:** Composer
+- **Servidor local:** WampServer 3.4.0 (Apache 2.4.65)
+- **Base de datos:** MySQL (incluido en WampServer), administrada con phpMyAdmin
+- **Editor:** Visual Studio Code
+- **Control de versiones:** Git / GitHub
 
-## Learning Laravel
+## 🖥️ Capturas de Pantalla y Problemas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Interfaz Principal
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Creación del proyecto (`composer create-project laravel/laravel:^12.0 crud_rapido`):** se crea el proyecto dentro de `C:\wamp64\www\`.
+- <!-- Captura de la creación del proyecto -->
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Configuración del `.env` y migraciones (`php artisan migrate`):** se configuran las credenciales de la base de datos `crud_rapido` y se ejecutan las migraciones iniciales.
+- <!-- Captura de php artisan migrate exitoso -->
 
-## Laravel Sponsors
+- **Modelo y migración de productos (`php artisan make:model Product -m`):** se crea el modelo `Product` y la migración de la tabla `products` con los campos `description`, `price` y `stock`.
+- <!-- Captura de la migración de products -->
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Instalación del generador (`composer require ibex/crud-generator --dev`):** se instala el paquete y se publica su configuración con `php artisan vendor:publish --tag=crud`.
+- <!-- Captura de la instalación del paquete -->
 
-### Premium Partners
+- **Generación del CRUD (`php artisan make:crud products bootstrap`):** se generan el controlador, el modelo y las vistas de productos.
+- <!-- Captura de make:crud -->
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **Rutas del CRUD (`Route::resource('products', ProductController::class)`):** define las siete rutas del recurso `products` (index, create, store, show, edit, update y destroy).
+- <!-- Captura de php artisan route:list -->
 
-## Contributing
+- **Listado de productos (`/products`):** vista principal con la tabla de productos y el botón **Create New**.
+- <!-- Captura del listado -->
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Crear un producto (`/products/create`):** formulario para registrar descripción, precio y stock.
+- <!-- Captura del formulario de crear -->
 
-## Code of Conduct
+- **Editar un producto (`/products/{id}/edit`):** formulario para modificar un producto existente.
+- <!-- Captura del formulario de editar -->
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Eliminar un producto:** botón de eliminación en cada fila del listado.
+- <!-- Captura del listado después de eliminar -->
 
-## Security Vulnerabilities
+- **Tabla `products` en phpMyAdmin:** registros guardados en la base de datos `crud_rapido`.
+- <!-- Captura de phpMyAdmin -->
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Problemas encontrados y soluciones
 
-## License
+- **Versión de PHP incorrecta en la terminal:** la terminal usaba PHP 8.0.30 y Laravel 12 requiere PHP 8.2 o superior. Se solucionó configurando el `PATH` de la terminal integrada de VS Code (`terminal.integrated.env.windows`) con `C:\wamp64\bin\php\php8.3.28`.
+- **Generador incompatible con una versión antigua de Laravel:** en un primer proyecto creado con una versión vieja de Laravel, Composer instaló la versión 1.x del generador y `make:crud` falló con el error `Call to undefined method ...::getColumns()`. Se solucionó creando el proyecto de nuevo con Laravel 12.
+- **Error de longitud de cadena en las migraciones:** se agregó `Schema::defaultStringLength(191);` en el método `boot()` de `app/Providers/AppServiceProvider.php`.
+- **Tabla `products` ya existente al migrar:** se corrigió la migración para que definiera la tabla una sola vez y se ejecutó `php artisan migrate:fresh` para recrear las tablas.
+- **Error `View [layouts.app] not found`:** las vistas generadas usan la plantilla `layouts.app`, que crea el paquete `laravel/ui`. Se solucionó con `composer require laravel/ui`, `php artisan ui bootstrap --auth` y `npm install`.
+- **Error `The [pcntl] extension is required to run Pail`:** al ejecutar `composer run dev` en Windows, el servicio de logs (`pail`) no puede iniciar porque requiere una extensión que no existe en Windows. No afecta al CRUD, ya que el servidor, la cola y Vite siguen funcionando.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📁 Estructura de Carpetas o Directorios
+
+```
+crud_rapido/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── Auth/                       # Controladores de autenticación (laravel/ui)
+│   │       └── ProductController.php       # Controlador del CRUD (generado)
+│   ├── Models/
+│   │   └── Product.php                     # Modelo Product con $fillable (generado)
+│   └── Providers/
+│       └── AppServiceProvider.php          # Schema::defaultStringLength(191)
+├── config/
+│   └── crud.php                            # Configuración publicada del generador
+├── database/
+│   └── migrations/
+│       └── ..._create_products_table.php   # Migración: description, price, stock
+├── resources/
+│   └── views/
+│       ├── layouts/
+│       │   └── app.blade.php               # Plantilla principal (laravel/ui)
+│       └── product/                        # Vistas del CRUD (index, create, edit, show)
+├── routes/
+│   └── web.php                             # Route::resource('products', ...)
+├── .env.example                            # Plantilla de variables de entorno
+├── composer.json                           # Dependencias de PHP
+├── package.json                            # Dependencias de Node.js
+└── README.md                               # Documentación del proyecto
+```
+
+## ▶️ Instrucciones de Ejecución / Uso
+
+1. Clonar el repositorio.
+2. Copiar la carpeta del proyecto dentro de `C:\wamp64\www\` (o la carpeta `htdocs` de tu servidor local).
+3. Iniciar WampServer y verificar que Apache y MySQL estén activos (ícono en verde). Comprobar con `php -v` que la terminal use PHP 8.2 o superior.
+4. Abrir una terminal dentro de la carpeta del proyecto e instalar las dependencias:
+   ```bash
+   composer install
+   npm install
+   ```
+5. Crear el archivo de variables de entorno y generar la clave de la aplicación:
+   ```bash
+   copy .env.example .env
+   php artisan key:generate
+   ```
+6. Editar el archivo `.env` con los datos de la base de datos:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=crud_rapido
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+7. Limpiar la caché de configuración y ejecutar las migraciones:
+   ```bash
+   php artisan config:clear
+   php artisan migrate
+   ```
+8. Levantar el servidor de desarrollo:
+   ```bash
+   composer run dev
+   ```
+9. Abrir el navegador y acceder a:
+   - `http://127.0.0.1:8000/products` (listado de productos)
+   - `http://127.0.0.1:8000/products/create` (crear un producto)
+
+> **Notas:**
+> - El archivo `.env` y las carpetas `vendor` y `node_modules` no se suben al repositorio, por eso es necesario generarlos con los pasos anteriores.
+> - Si aparece el error de `pail` al ejecutar `composer run dev`, se puede ignorar: no afecta al funcionamiento del CRUD.
+
+## 👤 Autor y Contexto
+
+- **Nombre:** René
+- **Institución:** Universidad Tecnológica de Panamá (UTP)
+- **Curso:** Desarrollo Web
+- **Docente:** Ing. Irina Fong
+- **Fecha de Realización:** [23/11/2026]
+
+## 🔗 Referencias
+
+- Presentación del laboratorio: "Acercamiento a un CRUD rápido en Laravel" (Ing. Irina Fong)
+- Documentación oficial de Laravel: https://laravel.com/docs/12.x
+- Generador de CRUD: https://github.com/awais-vteams/laravel-crud-generator
+- Paquete `laravel/ui`: https://github.com/laravel/ui
