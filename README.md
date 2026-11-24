@@ -143,7 +143,7 @@ crud_rapido/
 - **Institución:** Universidad Tecnológica de Panamá (UTP)
 - **Curso:** Desarrollo Web
 - **Docente:** Ing. Irina Fong
-- **Fecha de Realización:** [23/11/2026]
+- **Fecha de Realización:** [01/11/2026]
 
 ## 🔗 Referencias
 
